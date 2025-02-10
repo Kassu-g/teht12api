@@ -6,6 +6,15 @@ const app = express();
 const PORT = 1234;
 app.use(cors());
 app.use(express.json());
+if (process.env.NODE_ENV === 'development') {
+    const corsOptions = {
+      origin: 'http://localhost:3000',
+      optionsSuccessStatus: 200
+    };
+    app.use(cors(corsOptions));
+  } else {
+    app.use(cors());
+  }
 mongoose.connect('mongodb://localhost:27017/booksdb', {
 }).then(() => console.log('MongoDB connected'))
   .catch(err => console.error(err));
@@ -22,3 +31,5 @@ app.post('/api/book', async (req, res) => {
 app.listen(PORT, () => {
   console.log(`Täällä toimii http://localhost:${PORT}`);
 });
+
+  
