@@ -1,0 +1,13 @@
+{
+  "name": "teht12api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "install": "cd client && npm install",
+    "dev:client": "cd client && npm run dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
