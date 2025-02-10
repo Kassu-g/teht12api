@@ -1,6 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
+import Book from './models/Book';
 const app = express();
 const PORT = 1234;
 app.use(cors());
@@ -9,12 +10,6 @@ mongoose.connect('mongodb://localhost:27017/booksdb', {
 }).then(() => console.log('MongoDB connected'))
   .catch(err => console.error(err));
 
-const kirja = new mongoose.Schema({
-  author: String,
-  name: String,
-  pages: Number,
-});
-const Book = mongoose.model('Book', kirja);
 app.post('/api/book', async (req, res) => {
   try {
     const uusi = new Book(req.body);
