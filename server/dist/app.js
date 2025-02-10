@@ -35,14 +35,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-var express_1 = __importDefault(require("express"));
-var mongoose_1 = __importDefault(require("mongoose"));
-var cors_1 = __importDefault(require("cors"));
-var Book_1 = __importDefault(require("./models/Book"));
+var express_1 = require("express");
+var mongoose_1 = require("mongoose");
+var cors_1 = require("cors");
+var Book_1 = require("./models/Book");
 var app = (0, express_1.default)();
 var PORT = 1234;
 app.use((0, cors_1.default)());
