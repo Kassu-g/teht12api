@@ -42,26 +42,30 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
 var mongoose_1 = __importDefault(require("mongoose"));
 var cors_1 = __importDefault(require("cors"));
+var Book_1 = __importDefault(require("./models/Book"));
 var app = (0, express_1.default)();
 var PORT = 1234;
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());
+if (process.env.NODE_ENV === 'development') {
+    var corsOptions = {
+        origin: 'http://localhost:3000',
+        optionsSuccessStatus: 200
+    };
+    app.use((0, cors_1.default)(corsOptions));
+}
+else {
+    app.use((0, cors_1.default)());
+}
 mongoose_1.default.connect('mongodb://localhost:27017/booksdb', {}).then(function () { return console.log('MongoDB connected'); })
     .catch(function (err) { return console.error(err); });
-var bookSchema = new mongoose_1.default.Schema({
-    author: String,
-    name: String,
-    pages: Number,
-});
-var Book = mongoose_1.default.model('Book', bookSchema);
-exports.default = Book;
 app.post('/api/book', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var uusi, error_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 2, , 3]);
-                uusi = new Book(req.body);
+                uusi = new Book_1.default(req.body);
                 return [4 /*yield*/, uusi.save()];
             case 1:
                 _a.sent();
